@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.nutritionDao">
+    <select id="getTodayFoodRecord" parameterType="hashmap" resultType="foodRecord">
+        SELECT *
+        FROM foodrecord
+        WHERE foodRecord_childId = #{child_id}
+        AND DATE_FORMAT(foodRecord_date, "%Y-%m-%d") = DATE_FORMAT(#{today}, "%Y-%m-%d")
+    </select>
+
+    <select id="getTodaySchoolFeeding" parameterType="hashmap" resultType="schoolFeeding">
+        SELECT *
+        FROM schoolfeeding
+        WHERE DATE_FORMAT(schoolFeeding_date, "%Y-%m-%d") = DATE_FORMAT(#{today}, "%Y-%m-%d")
+        AND schoolFeeding_schoolName = #{schoolName}
+        AND schoolFeeding_area = #{schoolArea}
+    </select>
+
+    <select id="getNutritionalStandard" parameterType="hashmap" resultType="hashmap">
+        SELECT *
+        FROM nutritionstandard
+        WHERE nutritionStandard_sex = #{child_sex}
+        AND nutritionStandard_maxAge >= #{child_age}
+        AND #{child_age} >= nutritionStandard_minAge
+    </select>
+
+</mapper>

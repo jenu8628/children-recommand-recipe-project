@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webapp.formychild.dao.messageDao">
+
+    <select id="getAllMyReceiveMessage" parameterType="String" resultType="message">
+        select *
+        from message
+        where message_receiverId = #{message_receiverId}
+    </select>
+
+    <select id="getAllMyMessage" parameterType="String" resultType="message">
+        SELECT *
+        FROM message
+        WHERE message_receiverId = #{message_receiverId}
+           OR message_senderId = #{message_receiverId}
+        ORDER BY message_sendDate ASC;
+    </select>
+
+    <update id="checkReadMessage" parameterType="String">
+        UPDATE message
+        SET message_flag = 0
+        WHERE message_id = #{message_id}
+    </update>
+
+    <!-- 웹소켓 채팅 -->
+
+    <insert id="addMessageRoom" parameterType="messageRoom">
+        INSERT INTO messageroom(messageRoom_id, messageRoom_hashId, messageRoom_parentId, messageRoom_childId)
+        values ((CONCAT('messageRoom-', (SELECT if(MAX(messageRoom_num) is null, 1, max(temp.messageRoom_num) + 1)
+                                         FROM (SELECT messageRoom_num FROM messageroom) as temp))
+                    ), #{messageRoom_hashId}, #{messageRoom_parentId}, #{messageRoom_childId})
+    </insert>
+
+    <select id="findAllMessageRoom" resultType="messageRoom">
+        SELECT messageRoom_id, messageRoom_hashId, messageRoom_parentId, messageRoom_childId
+        FROM messageroom
+    </select>
+
+    <select id="findMessageRoomById" parameterType="String" resultType="messageRoom">
+        SELECT messageRoom_id, messageRoom_hashId, messageRoom_parentId, messageRoom_childId
+        FROM messageroom
+        WHERE messageRoom_hashId = #{messageRoom_hashId}
+    </select>
+
+    <insert id="sendMessage" parameterType="message">
+        INSERT INTO message(message_id, message_senderId, message_receiverId, message_content, message_recipeId,
+                            message_messageRoomHashId)
+        VALUES ((
+                    CONCAT('message-', (SELECT if(MAX(message_num) is null, 1, max(temp.message_num) + 1)
+                                        FROM (SELECT message_num FROM message) as temp))
+                    ), #{message_senderId}, #{message_receiverId}, #{message_content}, #{message_recipeId},
+                #{message_messageRoomHashId})
+    </insert>
+
+    <select id="getMessages" parameterType="String" resultType="message">
+        SELECT message_id,
+               message_senderId,
+               message_receiverId,
+               message_content,
+               message_sendDate,
+               message_flag,
+               message_recipeId,
+               message_messageRoomHashId
+        FROM message
+        WHERE message_messageRoomHashId = #{message_messageRoomHashId}
+    </select>
+
+    <select id="getLastMessageBySenderId" parameterType="message" resultType="message">
+        SELECT message_id,
+               message_senderId,
+               message_receiverId,
+               message_content,
+               message_sendDate,
+               message_flag,
+               message_recipeId,
+               message_messageRoomHashId
+        FROM message
+        WHERE message_senderId = #{message_senderId}
+          and message_messageRoomHashId = #{message_messageRoomHashId}
+        ORDER BY message_sendDate DESC LIMIT 1
+    </select>
+
+    <select id="getMessageRoomHashId" parameterType="messageRoom" resultType="String">
+        SELECT messageRoom_hashId
+        FROM messageroom
+        WHERE messageRoom_parentId = #{messageRoom_parentId}
+          and messageRoom_childId = #{messageRoom_childId}
+    </select>
+
+    <select id="getMessageRoomMyChildren" parameterType="String" resultType="messageRoom">
+        SELECT messageRoom_id, messageRoom_hashId, messageRoom_parentId, messageRoom_childId
+        FROM messageroom
+        WHERE messageRoom_parentId = #{messageRoom_parentId}
+    </select>
+
+    <update id="readMessage" parameterType="message">
+        UPDATE message
+        SET message_flag = 0
+        WHERE message_receiverId = #{message_receiverId}
+          and message_messageRoomHashId = #{message_messageRoomHashId}
+          and (message_sendDate BETWEEN '2021-01-01 00:00:00' AND #{message_sendDate})
+    </update>
+
+    <select id="getAllUnreadMessage" parameterType="String" resultType="Integer">
+        SELECT count(message_flag)
+        FROM message
+        WHERE message_receiverId = #{message_receiverId}
+          AND message_flag = 1
+    </select>
+
+    <select id="getUnreadMessage" parameterType="message" resultType="Integer">
+        SELECT count(message_flag)
+        FROM message
+        WHERE message_messageRoomHashId = #{message_messageRoomHashId}
+          AND message_receiverId = #{message_receiverId}
+          AND message_flag = 1
+    </select>
+</mapper>

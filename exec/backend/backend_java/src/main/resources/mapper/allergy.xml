@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.allergyDao">
+    <select id="getMyChildAllergyId" parameterType="String" resultType="String">
+        select allergy_id
+        from allergy
+        where allergy_childId = #{allergy_childId}
+    </select>
+
+    <insert id="addChildAllergy" parameterType="String">
+--         insert into allergy(allergy_id, allergy_childId)
+--         values (CONCAT('allergy-', (SELECT if(MAX(allergy_num) is null, 1, max(temp.allergy_num) + 1)
+--                                     from (select allergy_num FROM allergy) as temp)),
+--                 #{allergy_childId})
+    </insert>
+
+    <select id="getMyChildAllergy" parameterType="String" resultType="String">
+        select allergyDetail_allergyName
+        from allergydetail
+        where allergyDetail_childId = #{allergyDetail_childId};
+    </select>
+
+    <insert id="addMyChildAllergy" parameterType="allergyDetail">
+        insert into allergydetail(allergyDetail_id, allergyDetail_childId,
+                                  allergyDetail_allergyName)
+        values (CONCAT('allergyDetail-', (SELECT if(MAX(allergyDetail_num) is null, 1, max(temp.allergyDetail_num) + 1)
+                                          from (SELECT allergyDetail_num FROM allergydetail) as temp)),
+                #{allergyDetail_childId},
+                #{allergyDetail_allergyName})
+    </insert>
+
+    <delete id="removeMyChildAllergy" parameterType="allergyDetail">
+        delete
+        from allergydetail
+        where allergyDetail_childId = #{allergyDetail_childId}
+          and allergyDetail_allergyName = #{allergyDetail_allergyName}
+    </delete>
+</mapper>

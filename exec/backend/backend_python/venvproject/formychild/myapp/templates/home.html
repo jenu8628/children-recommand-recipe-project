@@ -1,0 +1,29 @@
+<!-- # home.html -->
+
+
+<h1>Parent DB Test</h1>
+
+<table class="table-contents" style="padding: 10px; border: 1px solid;">
+    <tr>
+        <th>번호</th>
+        <th>아이디</th>
+        <th>이메일</th>
+        <th>비밀번호</th>
+        <th>이름</th>
+        <th>연락처</th>
+    </tr>
+    {% for parent in parents %}
+    <tr>
+        <td>{{parent.parent_num}}</td>
+        <td>{{parent.parent_id}}</td>
+        <td>{{parent.parent_email}}</td>
+        <td>{{parent.parent_pwd}}</td>
+        <td>{{parent.parent_name}}</td>
+        <td>{{parent.parent_tel}}</td>
+    </tr>
+    {% endfor %}
+
+    <button>
+        테스트
+    </button>
+</table>

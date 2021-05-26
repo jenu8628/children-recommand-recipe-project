@@ -1,0 +1,38 @@
+.NutritionRecommend-container > .recommend {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: cornsilk;
+  position: relative;
+  /* opacity: 0; */
+}
+.NutritionRecommend-container > .recommend .recipeImg {
+  position: absolute;
+  /* object-fit: cover; */
+  height: 40%;
+  max-width: 180%;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.NutritionRecommend-container > .recommend .name {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+.NutritionRecommend-container > .recommend .direction {
+  position: fixed;
+  right: 0;
+  z-index: 3;
+  font-size: 2.5em;
+}
+.NutritionRecommend-container > .recommend .time {
+  position: absolute;
+  bottom: 1em;
+  margin-left: 75%;
+  font-size: 1.5em;
+}

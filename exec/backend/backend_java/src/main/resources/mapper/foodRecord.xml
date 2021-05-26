@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.foodRecordDao">
+    <insert id="finishRecipe" parameterType="foodRecord">
+        INSERT INTO foodrecord(foodRecord_id, foodRecord_parentId, foodRecord_childId,
+                               foodRecord_recipeId, foodRecord_date, foodRecord_media,
+                               foodRecord_rating, foodRecord_difficulty)
+        VALUES (CONCAT('foodRecord-',(SELECT if(MAX(foodRecord_num) is null , 1, max(temp.foodRecord_num) + 1)
+                                    FROM (SELECT foodRecord_num FROM foodrecord) AS temp)),
+                #{foodRecord_parentId},
+                #{foodRecord_childId},
+                #{foodRecord_recipeId},
+                now(),
+                #{foodRecord_media},
+                #{foodRecord_rating},
+                #{foodRecord_difficulty})
+    </insert>
+
+    <update id="updateRecipeRating" parameterType="String">
+        UPDATE recipe
+        SET recipe_rating = (SELECT sum(foodRecord_rating)/count(foodRecord_id)
+                            FROM foodrecord
+                            WHERE foodRecord_recipeId = #{foodRecord_recipeId})
+        WHERE recipe_id = #{foodRecord_recipeId}
+    </update>
+
+    <update id="updateRecipeDifficulty" parameterType="String">
+        UPDATE recipe
+        SET recipe_difficulty = (SELECT sum(foodRecord_difficulty)/count(foodRecord_id)
+                                FROM foodrecord
+                                WHERE foodRecord_recipeId = #{foodRecord_recipeId})
+        WHERE recipe_id = #{foodRecord_recipeId}
+    </update>
+
+    <select id="getMyMonthlyFoodRecord" parameterType="foodRecord" resultType="foodRecord">
+        SELECT *
+        FROM foodrecord
+        WHERE (DATE_FORMAT(foodRecord_date, "%Y-%m-%d") BETWEEN #{start_date} AND #{end_date})
+        AND foodRecord_childId = #{foodRecord_childId}
+    </select>
+
+    <delete id="removeMyFoodRecord" parameterType="String">
+        DELETE
+        FROM foodrecord
+        WHERE foodRecord_id = #{foodRecord_id}
+    </delete>
+
+    <select id="getRecipeRating" parameterType="hashmap" resultType="recipeRating">
+        SELECT *
+        FROM reciperating
+        WHERE recipeRating_childId = #{child_id} AND recipeRating_recipeId = #{recipe_id}
+    </select>
+
+    <insert id="addRecipeRatingDB" parameterType="recipeRating">
+        INSERT INTO reciperating(recipeRating_id, recipeRating_recipeId, recipeRating_parentId, recipeRating_childId, recipeRating_rating)
+        VALUES (CONCAT('recipeRating-',(SELECT if(MAX(recipeRating_num) is null , 1, max(temp.recipeRating_num) + 1)
+                                    FROM (SELECT recipeRating_num FROM reciperating) AS temp)),
+                #{recipeRating_recipeId}, #{recipeRating_parentId}, #{recipeRating_childId}, #{recipeRating_rating})
+    </insert>
+
+    <update id="updateRecipeRatingDB" parameterType="recipeRating">
+        UPDATE reciperating
+        SET recipeRating_rating = #{recipeRating_rating}
+        WHERE recipeRating_childId = #{recipeRating_childId}
+        AND recipeRating_recipeId = #{recipeRating_recipeId}
+    </update>
+</mapper>

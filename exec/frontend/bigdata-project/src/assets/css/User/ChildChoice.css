@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "paybooc-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.childchoice {
+  color: #666666;
+  font-family: "paybooc-Bold", sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.childchoice_container {
+  position: relative;
+  max-width: 85vw;
+  width: 100%;
+  height: 95vh;
+  top: 3vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.childchoice_container .childchoice_menu {
+  height: 5vh;
+  padding-top: 2vh;
+  font-size: 20px;
+}
+
+.childchoice_content {
+  margin: 10vh auto;
+  text-align: center;
+  align-content: center;
+}
+
+.childchoice_content .childchoice_children {
+  display: inline-flex;
+  width: 9em;
+  height: 9em;
+  margin: 3vh 3vw;
+  text-align: center;
+  align-content: center;
+  border-radius: 100%;
+  border: 6px solid #f8f8f8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.childchoice_content .childchoice_children span {
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.8rem;
+  padding-top: 2.8rem;
+}
+
+.childchoice-btn-content {
+  margin: 0 auto;
+  font-size: 30px;
+  margin-top: 4vh;
+}
+
+.check_child {
+  color: #f23363;
+}

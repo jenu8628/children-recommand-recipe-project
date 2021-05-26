@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.loginDao">
+    <select id="loginByParent" parameterType="parent" resultType="parent">
+        select parent_id, parent_email
+        from parent
+        where parent_email = #{parent_email}
+          and parent_pwd = #{parent_pwd}
+    </select>
+
+    <select id="loginByChild" parameterType="child" resultType="child">
+        select child_id
+        from child
+        where child_id = #{child_id}
+    </select>
+
+    <select id="findEmail" parameterType="parent" resultType="String">
+        select parent_email
+        from parent
+        where parent_name = #{parent_name}
+          and parent_tel = #{parent_tel}
+    </select>
+
+    <select id="findPassword" parameterType="parent" resultType="String">
+        select parent_pwd
+        from parent
+        where parent_email = #{parent_email}
+          and parent_name = #{parent_name}
+          and parent_birth = #{parent_birth}
+    </select>
+</mapper>

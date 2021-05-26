@@ -1,0 +1,414 @@
+.addchild {
+  color: #666666;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.addchild-container {
+  position: relative;
+  max-width: 95vw;
+  width: 100%;
+  top: 1vh;
+  margin: 0 auto;
+}
+
+/* 배경 card */
+.addchild-container.active .addchild-card:first-child {
+  background: #f2f2f2;
+  margin: 0 2vw; /*상하 좌우*/
+}
+
+/* 실제 정보 입력 card */
+.addchild-container.active .addchild-card:nth-child(2) {
+  background: #fafafa;
+  margin: 0 1vw;
+}
+
+.addchild-container.active .addchild-card.alt {
+  top: 8vh;
+  right: 0;
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 8vh 0 6vh; /*상 좌우 하*/
+}
+
+.addchild-container.active .addchild-card.alt .addchild-title,
+.addchild-container.active .addchild-card.alt .addchild-input {
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.3s ease;
+}
+
+.addchild-container.active .addchild-card.alt .title {
+  transition-delay: 0.3s;
+}
+
+.addchild-container.active .addchild-card.alt .addchild-input {
+  transition-delay: 0.4s;
+}
+
+.addchild-container.active .addchild-card.alt .addchild-input:nth-child(2) {
+  transition-delay: 0.5s;
+}
+
+.addchild-container.active .addchild-card.alt .addchild-input:nth-child(3) {
+  transition-delay: 0.6s;
+}
+
+/* addchild-card */
+.addchild-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 2vh 0 2vh 0;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: 0.3s ease;
+}
+
+.addchild-card:first-child {
+  background: #fafafa;
+  height: 1vh;
+  border-radius: 5px 5px 0 0;
+  margin: 0 2vw;
+  padding: 0;
+}
+
+.addchild-card .addchild-title {
+  position: relative;
+  z-index: 1;
+  border-left: 5px solid #40aa57;
+  margin: 0 0 35px;
+  padding: 2vh 0 2vh 10vw;
+  color: #40aa57;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.addchild-card .addchild-input {
+  position: relative;
+  margin: 0 60px 40px;
+  /* margin: 6vh 10vw 1vh; 계속 조정해보기 */
+}
+
+.addchild-card .addchild-input input {
+  outline: none;
+  /* z-index: 1; */
+  position: relative;
+  background: none;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  color: #212121;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.addchild-input .half {
+  display: flex;
+}
+.addchild-input .half .half-l {
+  width: 47%;
+  margin-right: 6%;
+}
+.addchild-input .half .half-r {
+  width: 47%;
+}
+
+.addchild-input input[type="text"] {
+  padding-top: 1.6em;
+  padding-left: 0.2em;
+}
+
+.addchild-input input[type="number"] {
+  padding-top: 0.5em;
+  padding-left: 0.2em;
+}
+
+.addchild-input input[type="date"]{
+  padding-top: 0.5em;
+}
+
+.addchild-card .addchild-input input ~ .addchild-input-label {
+  color: #9d9d9d;
+  transform: translate(-12%, -50%) scale(0.75);
+}
+
+.addchild-card .addchild-input input:focus ~ .addchild-input-bar:before,
+.addchild-card .addchild-input input:focus ~ .addchild-input-bar:after {
+  width: 50%;
+}
+
+.addchild-card .addchild-input input:valid ~ .addchild-input-label {
+  color: #9d9d9d;
+  transform: translate(-12%, -50%) scale(0.75);
+}
+
+.addchild-card .addchild-input .addchild-input-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #757575;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 60px;
+  transition: 0.2s ease;
+}
+
+.addchild-card .addchild-input .addchild-input-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #757575;
+  width: 100%;
+  height: 1px;
+}
+
+.addchild-card .addchild-input .addchild-input-bar:before,
+.addchild-card .addchild-input .addchild-input-bar:after {
+  content: "";
+  position: absolute;
+  background: #40aa57;
+  width: 0;
+  height: 2px;
+  transition: 0.2s ease;
+}
+
+.addchild-card .addchild-input .addchild-input-bar:before {
+  left: 50%;
+}
+
+.addchild-card .addchild-input .addchild-input-bar:after {
+  right: 50%;
+}
+
+
+
+/* 현우 */
+.addchild .addchild-button-container .button-box{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  max-width: 160px;
+  max-height: 43px;
+  width: 40%;
+  height: 6vh;
+  transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
+}
+.addchild .addchild-button-container .button-box:active {
+  transform: translateY(5%);
+}
+.addchild .addchild-button-container .button-box .carrot {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 10px;
+  background: #f3951b;
+  color: white;
+  border-radius: 60% 20px 20px 60%;
+}
+.addchild .addchild-button-container .leaves-1,
+.addchild .addchild-button-container .leaves-2,
+.addchild .addchild-button-container .leaves-3 {
+  position: absolute;
+  width: 5px;
+  z-index: 0;
+  height: 5px;
+  border-right: 40px solid #40aa57;
+  border-bottom: 10px solid transparent;
+  border-radius: 50%;
+  transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
+  right: -30px;
+}
+.addchild .addchild-button-container .leaves-1 {
+  transform: rotate(-30deg);
+  top: 5px;
+}
+.addchild .addchild-button-container .leaves-2 {
+  top: 15px;
+}
+.addchild .addchild-button-container .leaves-3 {
+  transform: rotate(30deg);
+  top: 25px;
+}
+
+
+/* input child_area */
+.addchild-card .addchild-input select {
+  outline: none;
+  z-index: 1;
+  position: relative;
+  background: none;
+  width: 100%;
+  height: 8vh;
+  border: 0;
+  color: #212121;
+  font-size: 18px;
+  color: lightgray;
+  font-weight: 400;
+  padding-top: 0.7em;
+}
+
+.addchild-card .addchild-input select ~ .addchild-input-label {
+  color: #9d9d9d;
+  transform: translate(-12%, -50%) scale(0.75);
+}
+
+/* 당근 */
+.addchild-container .avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  /* z-index: 10;
+  background-color: white; */
+}
+.addchild-container .avatar-upload .avatar-edit {
+  width: 192px;
+  height: 192px;
+  position: relative;
+}
+.addchild-container .avatar-upload .avatar-edit input {
+  display: none;
+}
+.addchild-container .avatar-upload .avatar-edit .upload-label {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  display: block;
+}
+.addchild-containerr .avatar-upload .avatar-edit .upload-label .avatar-preview {
+  position: relative;
+  z-index: 5;
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 6px solid #f3951b;
+  display: block;
+}
+.addchild-container .avatar-upload .avatar-edit .leaves-1,
+.addchild-container .avatar-upload .avatar-edit .leaves-2,
+.addchild-container .avatar-upload .avatar-edit .leaves-3 {
+  cursor: pointer;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-right: 60px solid #40aa57;
+  border-bottom: 20px solid transparent;
+  border-radius: 50%;
+  -o-transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
+.addchild-container .avatar-upload .avatar-edit .leaves-1 {
+  top: -2%;
+  right: -4%;
+  transform: rotate(-70deg);
+}
+.addchild-container .avatar-upload .avatar-edit .leaves-2 {
+  top: 5%;
+  right: -13%;
+  transform: rotate(-40deg);
+}
+.addchild-container .avatar-upload .avatar-edit .leaves-3 {
+  top: 15%;
+  right: -16%;
+  transform: rotate(-10deg);
+}
+.addchild-container .avatar-upload .avatar-edit .carrot {
+  cursor: pointer;
+  position: absolute;
+  top: -4%;
+  left: -6%;
+  width: 210px;
+  height: 210px;
+  background: #f3951b;
+  -o-transform: scale(1.2);
+  border-radius: 100% 100% 100% 20%;
+  transform: rotate(10deg);
+  transition: all 0.2s ease-in-out;
+}
+.addchild-container .avatar-upload .avatar-edit label:after {
+  content: "\f040";
+  font-family: "FontAwesome";
+  color: #757575;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+
+.addchild-container .avatar-upload .avatar-preview #imagePreview{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+  background-color: white;
+}
+
+/* === */
+
+.addchild-container .modal-window {
+  backdrop-filter: saturate(100%) blur(3px);
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  border-radius: 1rem;
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.addchild-container .modal-window div {
+  width: 70vw;
+  height: 10vh;
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.5em;
+  background: white;
+  /* box-shadow: 10em gray; */
+  box-shadow: 20px 20px 20px grey;
+  border-radius: 25px;
+  /* border: 2px solid #f3951b;
+    background-color: #f3951b; */
+}
+
+.addchild-container .modal_content {
+  font-size: 20px;
+  text-align: center;
+  color: #40aa57;
+  /* margin-top: 3%; */
+}
+
+.addchild-container .modal2 div {
+  padding: 2em;
+}

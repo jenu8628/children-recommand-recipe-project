@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.webapp.formychild.dto.AllergyDto" alias="allergy" />
+		<typeAlias type="com.webapp.formychild.dto.AllergyDetailDto" alias="allergyDetail" />
+		<typeAlias type="com.webapp.formychild.dto.AllergyInfoDto" alias="allergyInfo" />
+		<typeAlias type="com.webapp.formychild.dto.ChildDto" alias="child" />
+		<typeAlias type="com.webapp.formychild.dto.FoodCategoryDto" alias="foodCategory" />
+		<typeAlias type="com.webapp.formychild.dto.FoodIngredientDto" alias="foodIngredient" />
+		<typeAlias type="com.webapp.formychild.dto.FoodRecordDto" alias="foodRecord" />
+		<typeAlias type="com.webapp.formychild.dto.MessageDto" alias="message" />
+		<typeAlias type="com.webapp.formychild.dto.MessageRoomDto" alias="messageRoom" />
+		<typeAlias type="com.webapp.formychild.dto.ParentDto" alias="parent" />
+		<typeAlias type="com.webapp.formychild.dto.PreferenceDto" alias="preference" />
+		<typeAlias type="com.webapp.formychild.dto.RecipeDifficultyDto" alias="recipeDifficulty" />
+		<typeAlias type="com.webapp.formychild.dto.RecipeDto" alias="recipe" />
+		<typeAlias type="com.webapp.formychild.dto.RecipeProcessDto" alias="recipeProcess" />
+		<typeAlias type="com.webapp.formychild.dto.RecipeRatingDto" alias="recipeRating" />
+		<typeAlias type="com.webapp.formychild.dto.RecommendationDto" alias="recommendation" />
+		<typeAlias type="com.webapp.formychild.dto.RefrigeratorDetailDto" alias="refrigeratorDetail" />
+		<typeAlias type="com.webapp.formychild.dto.RefrigeratorDto" alias="refrigerator" />
+		<typeAlias type="com.webapp.formychild.dto.ScrapDto" alias="scrap" />
+		<typeAlias type="com.webapp.formychild.dto.TipDto" alias="tip" />
+		<typeAlias type="com.webapp.formychild.dto.TodoDto" alias="todo" />
+		<typeAlias type="com.webapp.formychild.dto.NutritionDto" alias="nutrition" />
+		<typeAlias type="com.webapp.formychild.dto.SchoolFeedingDto" alias="schoolFeeding" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mapper/admin.xml" />
+		<mapper resource="mapper/allergy.xml" />
+		<mapper resource="mapper/child.xml" />
+		<mapper resource="mapper/foodRecord.xml" />
+		<mapper resource="mapper/login.xml" />
+		<mapper resource="mapper/message.xml" />
+		<mapper resource="mapper/parent.xml" />
+		<mapper resource="mapper/recipe.xml" />
+		<mapper resource="mapper/refrigerator.xml" />
+		<mapper resource="mapper/todo.xml" />
+		<mapper resource="mapper/nutrition.xml"/>
+	</mappers>
+</configuration>

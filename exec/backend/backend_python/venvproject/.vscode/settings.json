@@ -1,0 +1,9 @@
+{
+  "python.linting.pylintPath": "/opt/anaconda3/bin/pylint",
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": ["--load-plugins=pylint_django", "--django-settings-module=<myapp>.settings",],
+}
+
+
+// "--django-settings-module=<mainapp이름>.settings"

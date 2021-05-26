@@ -1,0 +1,273 @@
+.recipe-register-container .recipe-register {
+  width: 95vw;
+  height: 100vh;
+  background: white;
+  text-align: center;
+}
+
+/* PAGE 1 */
+.recipe-register-page1 {
+
+  background-color: violet;
+
+}
+
+.recipe-form-group {
+  margin-top: 1.5rem;
+}
+
+.recipe-form-group,
+.recipe-method-kind,
+.material {
+  position: relative;
+}
+
+.recipe-form-title {
+  color: #87b03c;
+  margin-bottom: 8vh;
+}
+
+.form-control {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #aaa;
+  box-shadow: none;
+}
+
+.form-control::-webkit-input-placeholder {
+  opacity: 1;
+  transition: 150ms ease-in-out opacity;
+}
+
+.form-control:-moz-placeholder {
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}
+
+/* FF 4-18 */
+.form-control::-moz-placeholder {
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}
+
+/* FF 19+ */
+.form-control:-ms-input-placeholder {
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}
+
+/* IE 10+ */
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+/* 클릭시 label 뜨도록*/
+.recipe-register-container input,
+.recipe-register-container select {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 1.8%;
+  font-size: 17px;
+  color: black;
+}
+
+.recipe-register-container label {
+  position: absolute;
+  top: -16px;
+  left: 0px;
+  font-size: 14px;
+  color: black;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: all 0.5s ease-in-out;
+}
+
+.form-control:focus {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #87b03c;
+}
+
+.form-control:focus+label,
+.form-control.filled+label {
+  opacity: 1;
+  top: -17px;
+  font-size: 13px;
+  color: #87b03c;
+  font-weight: bold;
+}
+
+.form-control:focus+label {
+  color: #87b03c;
+}
+
+/* div 한 줄로 */
+.recipe-register-container .recipe-method-kind {
+  display: inline-block;
+}
+
+.recipe-register-container .recipe-method {
+  width: 50%;
+}
+
+.recipe-register-container .recipe-kind {
+  width: 50%;
+}
+
+.add-material .material {
+  display: inline-block;
+}
+
+.add-material .material-name {
+  width: 25%;
+  padding-right: 15px;
+}
+
+.add-material .material-type {
+  width: 25%;
+}
+
+.add-material .material-volue {
+  width: 25%;
+}
+
+option[value=""][disabled] {
+  display: none;
+}
+
+/******************* PAGE2 **********************/
+.recipe-register-page2 .wrapper-preview {}
+
+.wrapper-preview .recipe-upload-row {}
+
+.recipe-register-page2 .wrapper-preview .recipe-upload-item {
+  display: inline-block;
+  height: 90px;
+  width: 90px;
+  margin: 5px;
+  border-radius: 0.8rem;
+  background-color: #87b03c;
+}
+
+.recipe-upload-item .recipe-upload-btn {
+  border-radius: 0.8rem;
+  color: white;
+  font-size: 3rem;
+  padding: 0.6rem;
+  font-family: "S-CoreDream-8Heavy";
+}
+
+/********* Modal 창 *********/
+.wrap-upload-header {
+  width: 100%;
+  height: 55%;
+  margin-top: -25px;
+  padding-bottom: 10px;
+  color: #87b03c;
+  border-bottom: 0.15rem solid lightgrey;
+  /* background-color: violet; */
+}
+
+.wrap-upload-body {
+  position: relative;
+  /* background-color: blueviolet; */
+  margin-top: -20px;
+  width: 100%;
+  height: 48vh;
+  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  display: table;
+}
+
+.upload-picture {
+  /* background-color: aqua; */
+  border: 0.2rem solid black;
+  width: 96%;
+  height: 70%;
+  max-height: 100%;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.upload-picture-p {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  font-size: 20px;
+  font-weight: bold;
+  color: grey;
+}
+
+.upload-picture img {
+  width: 100%;
+  height: 100%;
+}
+
+.upload_caption {
+  position: absolute;
+  width: 60vw;
+  top: 17vh;
+  font-size: 20px;
+  font-weight: bold;
+  color: lightgrey;
+  margin: auto;
+}
+
+.upload_caption:hover {
+  color: #87b03c;
+}
+
+#fileInput {
+  display: none;
+}
+
+.desc_of_recipe {
+  /* background-color: yellow; */
+  width: 95%;
+  height: 20%;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.desc_of_recipe textarea {
+  resize: none;
+  height: 98%;
+  width: 98%;
+  border: 0;
+  margin: 1px 0;
+  border: 2px solid #dfdfdf;
+  background-color: transparent;
+  font-size: 17px;
+}
+
+/* Modal footer */
+.wrap-upload-footer {
+  display: relative;
+  margin-top: -10px;
+  width: 100%;
+  height: 10%;
+}
+
+.wrap-upload-footer .registerRecipeItem {
+  float: left;
+  width: 49%;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: whitesmoke;
+  margin-right: 2%;
+}
+
+.wrap-upload-footer .closeRegisterRecipeBtn {
+  float: left;
+  width: 49%;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: whitesmoke;
+}

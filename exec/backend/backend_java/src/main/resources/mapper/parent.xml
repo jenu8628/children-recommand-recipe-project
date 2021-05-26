@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.parentDao">
+
+    <insert id="joinParent" parameterType="parent">
+        insert into parent(parent_id, parent_email, parent_pwd, parent_name, parent_tel, parent_birth)
+        values (CONCAT('parent-', (SELECT if(MAX(parent_num) is null, 1, max(temp.parent_num) + 1)
+                                   from (SELECT parent_num FROM parent) as temp)),
+                #{parent_email},
+                #{parent_pwd},
+                #{parent_name},
+                #{parent_tel},
+                #{parent_birth})
+    </insert>
+
+    <select id="checkForDuplicateEmail" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM parent
+        WHERE parent_email = #{input_email}
+    </select>
+
+    <select id="verifyPassword" parameterType="parent" resultType="int">
+        SELECT IF(
+                           (
+                               SELECT parent_pwd
+                               FROM parent
+                               WHERE parent_id = #{parent_id}
+                           ) = #{parent_pwd}, 1, 0
+                   )
+    </select>
+
+    <select id="getParentInfo" parameterType="string" resultType="parent">
+        SELECT parent_email, parent_pwd, parent_name, parent_tel, parent_birth
+        FROM parent
+        WHERE parent_id = #{parent_id}
+    </select>
+
+    <update id="modifyParentInfo" parameterType="parent">
+        UPDATE parent
+        SET parent_pwd   = #{parent_pwd},
+            parent_name  = #{parent_name},
+            parent_tel   = #{parent_tel},
+            parent_birth = #{parent_birth}
+        WHERE parent_id = #{parent_id}
+    </update>
+
+    <delete id="leaveParent" parameterType="string">
+        DELETE
+        FROM parent
+        WHERE parent_id = #{parent_id}
+    </delete>
+
+</mapper>

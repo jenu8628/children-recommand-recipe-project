@@ -1,0 +1,175 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.MyPageFavorites-container {
+  max-height: 95vh;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.MyPageFavorites-container .favorite-bookmark {
+  position: absolute;
+  font-size: 1.8rem;
+  top: 43%;
+  right: 11%;
+  z-index: 10;
+}
+
+.MyPageFavorites-container .MyPageFavorites-menu {
+  height: 5vh;
+  padding-top: 2em;
+  font-size: 20px;
+  text-align: center;
+}
+
+.MyPageFavorites-container .full {
+  display: grid;
+  max-width: 98%;
+  width: 100%;
+  margin: 4em auto;
+  grid-template-columns: 1fr 1fr; /* 두줄 */
+  max-height: 80%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.MyPageFavorites-container .empty {
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 즐겨찾기 목록 */
+.MyPageFavorites-container .favorite-box {
+  max-width: 100%;
+}
+
+.favorite-box {
+  padding-top: 0.6em;
+}
+
+.favorite-box .result-card {
+  margin: 2.8em 0.6em;
+  /* margin: 6em 0.3em; */
+  background: #fff;
+  border-radius: 1em;
+  max-width: 100%;
+  position: relative;
+  padding: 2.8em 0 0 0;
+  /* padding: 7em 0 0 0; */
+  -webkit-box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  -o-transition: transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+}
+
+.favorite-box .result-colorband {
+  height: 2px;
+  /* height: 3px; */
+  background-color: #f3951b;
+}
+
+.favorite-box .result-card h2 {
+  margin: 0;
+  font-size: 1.3em;
+  /* font-size: 2.2em; */
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.favorite-box .result-card .result-desc-content {
+  padding: 0.8rem 2rem;
+  /* padding: 1.4rem 2rem; */
+  font-size: 0.6em;
+  /* font-size: 1.3em; */
+}
+
+.favorite-box .result-card .result-desc-content .result_recipe_kcal {
+  color: #f3951b;
+  font-weight: bold;
+}
+
+.favorite-box .result-card .result-actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 3em;
+  /* height: 3.5em; */
+}
+
+.favorite-box .result-actions .result-recipe-rating,
+.favorite-box .result-actions .result-recipe-difficulty {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  /* font-size: 1.25em; */
+  outline: none;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 0.9em;
+  /* padding-top: 1em; */
+}
+
+.favorite-box .result-actions .result-recipe-rating {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-right-style: dotted;
+}
+
+.favorite-box .result-recipe-rating img {
+  display: inline;
+  width: 0.9em;
+  /* width: 1.3em; */
+  height: 0.9em;
+  /* height: 1.3em; */
+}
+
+.favorite-box .result-recipe-difficulty img {
+  display: inline;
+  width: 0.9em;
+  /* width: 1.3em; */
+  height: 0.9em;
+  /* height: 1.3em; */
+}
+
+.favorite-box .result-thumbnail {
+  position: absolute;
+  top: -3.3em;
+  /* top: -6.5em; */
+  left: 50%;
+  width: 60%;
+  /* width: 60%; */
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  border: 4px solid #fff;
+}
+
+.favorite-box .result-thumbnail .result-recipe_thumbnail {
+  width: 100%;
+  max-height: 80%;
+  height: 5.8em;
+  /* height: 13em; 한 줄 */
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

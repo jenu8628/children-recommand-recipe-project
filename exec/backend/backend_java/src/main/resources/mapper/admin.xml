@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.adminDao">
+    <select id="getAllParent" resultType="parent">
+        select parent_id, parent_email, parent_name, parent_tel, parent_birth
+        from parent
+    </select>
+
+    <select id="getParentInfo" parameterType="String" resultType="parent">
+        select parent_id, parent_email, parent_name, parent_tel, parent_birth
+        from parent
+        where parent_id = #{parent_id}
+    </select>
+
+    <select id="getAllChild" resultType="child">
+        select child_id,
+               child_parentId,
+               child_area,
+               child_schoolName,
+               child_name,
+               child_sex,
+               child_birth,
+               child_height,
+               child_weight,
+               child_profile,
+               child_BMI
+        from child
+    </select>
+
+    <select id="getChildInfo" parameterType="child" resultType="child">
+        select child_id,
+               child_parentId,
+               child_area,
+               child_schoolName,
+               child_name,
+               child_sex,
+               child_birth,
+               child_height,
+               child_weight,
+               child_profile,
+               child_BMI
+        from child
+        where child_id = #{child_id}
+          and child_parentId = #{child_parentId}
+    </select>
+
+    <insert id="addTip" parameterType="tip">
+        insert into tip(tip_id, tip_title, tip_content, tip_media)
+        values (CONCAT('tip-', (SELECT if(MAX(tip_num) is null, 1, max(temp.tip_num) + 1)
+                                from (select tip_num FROM tip) as temp)),
+                #{tip_title},
+                #{tip_content},
+                #{tip_media})
+    </insert>
+
+    <update id="modifyTip" parameterType="tip">
+        update tip
+        set tip_title   = #{tip_title},
+            tip_content = #{tip_content},
+            tip_media   = #{tip_media}
+        where tip_id = #{tip_id}
+    </update>
+
+    <delete id="removeTip" parameterType="String">
+        delete
+        from tip
+        where tip_id = #{tip_id}
+    </delete>
+
+    <select id="getAllTip" resultType="tip">
+        select tip_id, tip_title, tip_content, tip_media
+        from tip
+    </select>
+
+    <select id="getTipInfo" parameterType="String" resultType="tip">
+        select tip_id, tip_title, tip_content, tip_media
+        from tip
+        where tip_id = #{tip_id}
+    </select>
+</mapper>

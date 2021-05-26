@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webapp.formychild.dao.childDao">
+
+    <insert id="addChild" parameterType="child">
+        INSERT INTO
+        child(child_id, child_parentId, child_area, child_schoolName, child_name, child_sex, child_birth, child_height, child_weight, child_profile, child_BMI)
+        VALUES(
+        CONCAT('child-',(SELECT if(MAX(child_num) is null , 1, max(temp.child_num) + 1) from (select child_num FROM child) as temp)),
+        #{child_parentId}, #{child_area}, #{child_schoolName}, #{child_name}, #{child_sex}, #{child_birth}, #{child_height}, #{child_weight}, #{child_profile}, #{child_BMI})
+    </insert>
+
+    <select id="getMyChildren" parameterType="String" resultType="child">
+        SELECT *
+        FROM child
+        WHERE child_parentId = #{child_parentId}
+    </select>
+
+    <select id="getMyChild" parameterType="String" resultType="child">
+        SELECT *
+        FROM child
+        WHERE child_id = #{child_id}
+    </select>
+
+    <update id="updateChild" parameterType="child">
+        UPDATE child
+        SET child_area = #{child_area},
+            child_schoolName = #{child_schoolName},
+            child_name = #{child_name},
+            child_sex = #{child_sex},
+            child_birth = #{child_birth},
+            child_height = #{child_height},
+            child_weight = #{child_weight},
+            child_profile = #{child_profile},
+            child_BMI = #{child_BMI}
+        WHERE child_id = #{child_id}
+    </update>
+    
+    <delete id="deleteChild" parameterType="String">
+        DELETE
+        FROM child
+        WHERE child_id = #{child_id}
+    </delete>
+
+    <insert id="addPreferenceForChild" parameterType="preference">
+        INSERT INTO preference(preference_id, preference_childId, preference_foodIngredientId)
+        VALUES (
+        CONCAT('preference-',(SELECT if(MAX(preference_num) is null , 1, max(temp.preference_num) + 1) from (select preference_num FROM preference) as temp)),
+        #{preference_childId}, #{preference_foodIngredientId})
+    </insert>
+
+    <delete id="deleteAllPreferences" parameterType="String">
+        DELETE
+        FROM preference
+        WHERE preference_childId = #{preference_childId}
+    </delete>
+
+    <select id="getTodayNutritionalInfo" resultType="hashmap">
+        SELECT *
+        FROM
+        WHERE
+    </select>
+
+    <select id="getChildId" parameterType="String" resultType="String">
+        SELECT child_id
+        FROM child
+        WHERE child_parentId = #{child_parentId}
+        ORDER BY child_num DESC LIMIT 1
+    </select>
+
+    <select id="getFoodIngredientNameById" parameterType="String" resultType="String">
+        SELECT foodIngredient_name
+        FROM foodingredient
+        WHERE foodIngredient_id = #{foodIngredientId}
+    </select>
+
+    <select id="getMyParent" parameterType="String" resultType="parent">
+        SELECT *
+        FROM parent
+        WHERE parent_id = (SELECT child_parentId FROM child WHERE child_id = #{child_id});
+    </select>
+
+    <insert id="addRecipeRating" parameterType="recipeRating">
+        INSERT INTO reciperating(recipeRating_id, recipeRating_recipeId, recipeRating_parentId, recipeRating_childId, recipeRating_rating)
+        VALUES (
+        CONCAT('recipeRating-',(SELECT if(MAX(recipeRating_num) is null , 1, max(temp.recipeRating_num) + 1) from (select recipeRating_num FROM reciperating) as temp)),
+        #{recipeRating_recipeId}, #{recipeRating_parentId}, #{recipeRating_childId}, #{recipeRating_rating})
+    </insert>
+</mapper>

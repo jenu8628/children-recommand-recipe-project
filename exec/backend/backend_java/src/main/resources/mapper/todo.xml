@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webapp.formychild.dao.todoDao">
+    <insert id="addTodo" parameterType="todo">
+        insert into todo(todo_id, todo_parentId, todo_childId, todo_content)
+        values (CONCAT('todo-', (SELECT if(MAX(todo_num) is null, 1, max(temp.todo_num) + 1)
+                                 FROM (SELECT todo_num FROM todo) as temp)),
+                #{todo_parentId},
+                #{todo_childId},
+                #{todo_content})
+    </insert>
+
+    <select id="getTodoIdAfterAddTodo" parameterType="todo" resultType="string">
+        SELECT todo_id
+        FROM todo
+        WHERE todo_parentId = #{todo_parentId}
+          and todo_childId = #{todo_childId}
+        ORDER BY todo_date DESC LIMIT 1
+    </select>
+
+    <delete id="removeTodo" parameterType="string">
+        DELETE
+        FROM todo
+        WHERE todo_id = #{todo_id}
+    </delete>
+
+    <delete id="removeDaysTodo" parameterType="todo">
+        DELETE
+        FROM todo
+        WHERE todo_parentId = #{todo_parentId}
+          and todo_childId = #{todo_childId}
+          and DATE_FORMAT(todo_date, '%Y-%m-%d') = #{todo_date}
+    </delete>
+
+    <select id="getMyChildTodoList" parameterType="todo" resultType="todo">
+        SELECT todo_id, todo_parentId, todo_childId, todo_content, todo_check, todo_date
+        FROM todo
+        WHERE todo_parentId = #{todo_parentId}
+          and todo_childId = #{todo_childId}
+    </select>
+
+    <update id="modifyTodo" parameterType="todo">
+        UPDATE todo
+        SET todo_content = #{todo_content}
+        WHERE todo_id = #{todo_id}
+    </update>
+
+    <update id="checkTodo" parameterType="string">
+        UPDATE todo
+        SET todo_check = !todo_check
+        WHERE todo_id = #{todo_id}
+    </update>
+
+    <update id="completeTodayTodo" parameterType="string">
+        UPDATE todo
+        SET todo_check = 1
+        WHERE DATE_FORMAT(todo_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')
+            AND
+            todo_childId = #{todo_childId}
+    </update>
+
+    <update id="incompleteTodayTodo" parameterType="string">
+        UPDATE todo
+        SET todo_check = 0
+        WHERE DATE_FORMAT(todo_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')
+          AND
+            todo_childId = #{todo_childId}
+    </update>
+</mapper>

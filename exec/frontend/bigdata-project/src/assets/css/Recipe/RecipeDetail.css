@@ -1,0 +1,204 @@
+.recipe-background {
+  height: 100%;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.recipe-detail-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  width: 100vw;
+  height: 100%;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  /* list-style-type: none;
+  text-decoration: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; */
+}
+
+.recipe-detail-container .card {
+  position: relative;
+  background: #fff;
+  max-width: 500px;
+  margin: auto;
+  padding-bottom: 1em;
+  height: 100%;
+  border-radius: 40px !important;
+  box-shadow: 0px 0px 30px 10px rgb(179, 176, 176);
+}
+.card:first-child {
+  background: #fafafa;
+  height: 100% !important;
+  margin: 0 10px;
+}
+
+.recipe-detail-container .card .card-box {
+  position: relative;
+  display: block;
+  height: 40vh;
+}
+
+.recipe-detail-container .card .card-box > i{
+  position: absolute;
+  z-index: 50;
+  font-size: 2.2em;
+  left: 3%;
+  top: 4%;
+  color: #f3951b;
+}
+
+.recipe-detail-container .card .card-box .header {
+  /* background: url("http://img.taste.com.au/UZVXAdo7/taste/2016/11/chinese-egg-noodle-and-vegetable-stir-fry-94186-1.jpeg") no-repeat center;
+  ; */
+  background-size: cover;
+  height: 100%;
+  border-radius: 20px 20px 0 0;
+}
+
+.recipe-detail-container .card .card-box .header .fa-bookmark {
+  position: absolute;
+  right: 5%;
+  bottom: -0.6em;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3951b;
+  color: white;
+  font-size: 1.5em;
+  border-radius: 50%;
+}
+
+.recipe-detail-container .card .text .food {
+  color: #212129;
+  text-align: left;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0.5em 0.6em;
+}
+
+.recipe-detail-container .card .text .fa-clock-o {
+  color: #9b9b9b;
+  margin: 0 30px;
+}
+
+.recipe-detail-container .card .text .fa-users {
+  color: #9b9b9b;
+}
+
+.recipe-detail-container .card .text .stars {
+  margin: 10px 30px;
+}
+
+.recipe-detail-container .card .text .stars i {
+  color: #ffe500;
+}
+
+.recipe-detail-container .card .text .info {
+  margin: 20px 30px;
+}
+
+.recipe-detail-container .card .process {
+  width: 100%;
+  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recipe-detail-container .card .process > div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.recipe-detail-container .card .process .index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3951b;
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 1.5em;
+  border: #f3951b solid 1px;
+  border-radius: 50%;
+  color: white;
+}
+
+.recipe-detail-container .card .process .info {
+  width: 300px;
+}
+
+
+
+
+/* 현우버튼 */
+.card .button-container {
+  margin-bottom: 1.5em;
+}
+.card .button-container .button-box{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  max-width: 160px;
+  max-height: 43px;
+  width: 40%;
+  height: 6vh;
+  transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
+}
+.card .button-container .button-box:active {
+  transform: translateY(5%);
+}
+.card .button-container .button-box .carrot {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 10px;
+  background: #f3951b;
+  color: white;
+  border-radius: 60% 20px 20px 60%;
+}
+.card .button-container .leaves-1,
+.card .button-container .leaves-2,
+.card .button-container .leaves-3 {
+  position: absolute;
+  width: 5px;
+  z-index: 0;
+  height: 5px;
+  border-right: 40px solid #40aa57;
+  border-bottom: 10px solid transparent;
+  border-radius: 50%;
+  transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
+  right: -30px;
+}
+.card .button-container .leaves-1 {
+  transform: rotate(-30deg);
+  top: 5px;
+}
+.card .button-container .leaves-2 {
+  top: 15px;
+}
+.card .button-container .leaves-3 {
+  transform: rotate(30deg);
+  top: 25px;
+}

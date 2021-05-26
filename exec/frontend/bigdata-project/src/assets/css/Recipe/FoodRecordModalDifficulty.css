@@ -1,0 +1,49 @@
+.FoodRecordModal-container .modal .modal-level{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.FoodRecordModal-container .modal .modal-level .level{
+  width: 100%;
+  top:10%;
+  height: 40%;
+  font-size: 1.2em;
+}
+.FoodRecordModal-container .modal .modal-level .level h3{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.FoodRecordModal-container .modal .modal-level .level .recipe-difficulty{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 65%;
+}
+.modal-level .level .recipe-difficulty .level-1,
+.modal-level .level .recipe-difficulty .level-2,
+.modal-level .level .recipe-difficulty .level-3 {
+  background: #40aa57;
+  width: 25%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 1.5rem;
+  transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
+}
+.modal-level .level .recipe-difficulty .level-1.active,
+.modal-level .level .recipe-difficulty .level-2.active,
+.modal-level .level .recipe-difficulty .level-3.active {
+  background: #f3951b ;
+  transition: 0.5s cubic-bezier(0.25, 0, 0, 1);
+}
+.modal-level .level .recipe-difficulty .level-1:active,
+.modal-level .level .recipe-difficulty .level-2:active,
+.modal-level .level .recipe-difficulty .level-3:active {
+  background: #f3951b ;
+  transform: perspective(250px) scale3d(1, 1, 1) translateY(5%);
+}

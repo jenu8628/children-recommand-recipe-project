@@ -1,0 +1,93 @@
+[v-cloak] {
+  display: none;
+}
+
+.ChatList-container {
+  max-width: 100vw;
+  width: 100%;
+  max-height: 100vh;
+  height: 100vh;
+  /* background: #fffefe; */
+  overflow: hidden;
+}
+
+.ChatList-panel {
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  position: relative;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  border-bottom: 1.5px solid #d2d6da;
+  background: #f0f4f7;
+  /* border-radius: 0 0 0.4em 0.4em; */
+  box-shadow: 0 1px 2px grey;
+}
+
+.ChatList-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ChatList-header .ChatList-header-content {
+  text-align: center;
+}
+
+.ChatList-messageRoom-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.ChatList-list-group-item {
+  padding: 0.6em 2em;
+  border-bottom: 1px solid #e7ebee;
+  font-size: 1.3em;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  background-color: #fff;
+  background-size: cover;
+  color: #57595a;
+}
+
+.ChatList-list-group-item .ChatList-name {
+  padding-left: 1.4em;
+  vertical-align: middle;
+  padding-top: 0.9em;
+}
+
+.ChatList-list-group-item .ChatList-profile {
+  text-align: center;
+  width: 3em;
+  height: 3em;
+  border-radius: 100%;
+  border: 3px solid #f8f8f8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ChatList-profile #ChatList-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ChatList-unread{
+ position: absolute;
+ top: 0.8em;
+ right: 4.8em;
+ width: 0.8em;
+ height: 0.7em;
+ text-align: center;
+ vertical-align: middle;
+ border-radius: 100%;
+}
+
+.ChatList-unread .ChatList-num{
+  background-color: #40aa57;
+  border-radius: 50%;
+  font-size: 0.7em;
+  color: #fff;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.refrigeratorDao">
+    <select id="getMyRefrigeratorId" parameterType="String" resultType="String">
+        select refrigerator_id
+        from refrigerator
+        where refrigerator_parentsId = #{refrigerator_parentsId}
+    </select>
+
+    <insert id="addRefrigerator" parameterType="String">
+        insert into refrigerator(refrigerator_id, refrigerator_parentsId)
+        values (CONCAT('refrigerator-', (SELECT if(MAX(refrigerator_num) is null, 1, max(temp.refrigerator_num) + 1)
+                                         from (SELECT refrigerator_num FROM refrigerator) as temp)),
+                #{refrigerator_parentsId})
+    </insert>
+
+    <select id="getMyRefrigerator" parameterType="String" resultType="String">
+        select refrigeratorDetail_ingredientName
+        from refrigeratorDetail
+        where refrigeratorDetail_refrigeratorId = #{refrigeratorDetail_refrigeratorId}
+    </select>
+
+    <insert id="addMyRefrigerator" parameterType="refrigeratorDetail">
+        insert into refrigeratorDetail(refrigeratorDetail_id, refrigeratorDetail_refrigeratorId,
+                                       refrigeratorDetail_ingredientName)
+        values (CONCAT('refrigeratorDetail-',
+                       (SELECT if(MAX(refrigeratorDetail_num) is null, 1, max(temp.refrigeratorDetail_num) + 1)
+                        from (SELECT refrigeratorDetail_num FROM refrigeratorDetail) as temp)),
+                #{refrigeratorDetail_refrigeratorId},
+                #{refrigeratorDetail_ingredientName})
+    </insert>
+
+    <delete id="removeMyRefrigerator" parameterType="refrigeratorDetail">
+        delete
+        from refrigeratorDetail
+        where refrigeratorDetail_refrigeratorId = #{refrigeratorDetail_refrigeratorId}
+          and refrigeratorDetail_ingredientName = #{refrigeratorDetail_ingredientName}
+    </delete>
+</mapper>

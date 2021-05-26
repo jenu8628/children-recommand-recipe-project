@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webapp.formychild.dao.recipeDao">
+    <select id="getRecipe" parameterType="String" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE recipe_id = #{recipe_id}
+    </select>
+
+    <select id="getRecipeProcess" parameterType="String" resultType="recipeProcess">
+        SELECT *
+        FROM recipeprocess
+        WHERE recipeProcess_recipeId = #{recipe_id}
+    </select>
+
+    <select id="searchByRecipeName" parameterType="String" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE recipe_name LIKE CONCAT('%',#{recipe_name},'%')
+    </select>
+
+    <select id="searchByRecipeIngredient" parameterType="String" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE recipe_ingredient LIKE CONCAT('%',#{recipe_ingredient},'%')
+    </select>
+
+    <insert id="scrapToRecipe" parameterType="scrap">
+        INSERT INTO scrap(scrap_id, scrap_parentId, scrap_recipeId)
+        VALUES (
+            CONCAT('scrap-',(SELECT if(MAX(scrap_num) is null , 1, max(temp.scrap_num) + 1) from (select scrap_num FROM scrap) as temp)),
+            #{scrap_parentId},
+            #{scrap_recipeId}
+        )
+    </insert>
+
+    <delete id="cancelScrapToRecipe" parameterType="scrap">
+        DELETE
+        FROM scrap
+        WHERE scrap_parentId = #{scrap_parentId}
+        AND scrap_recipeId = #{scrap_recipeId}
+    </delete>
+
+    <select id="getAllScrapRecipe" parameterType="String" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE recipe_id IN (SELECT scrap_recipeId
+                            FROM scrap
+                            WHERE scrap_parentId = #{scrap_parentId})
+    </select>
+
+    <select id="getPreferenceIngredientList" parameterType="String" resultType="String">
+        SELECT foodIngredient_name
+        FROM foodingredient
+        WHERE foodIngredient_id IN (
+                                    SELECT preference_foodIngredientId
+                                    FROM preference
+                                    WHERE preference_childId = #{preference_childId}
+                                    )
+    </select>
+
+    <select id="getAllRecipeByIngredientList" parameterType="list" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE
+        <foreach collection="list" index="index" item="foodIngredient_name" separator="or">
+            recipe_ingredient like CONCAT('%', #{foodIngredient_name}, '%')
+        </foreach>
+    </select>
+
+    <select id="getAllFoodCategory" resultType="foodCategory">
+        SELECT *
+        FROM foodcategory
+    </select>
+
+    <select id="getAllFoodIngredient" resultType="foodIngredient">
+        SELECT *
+        FROM foodingredient
+    </select>
+
+    <select id="getRecommendationRecipesByAllergy" parameterType="map" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE
+        recipe_id IN (SELECT recommendation_recipeId
+                      FROM recommendation
+                      WHERE recommendation_childId = #{child_id})
+        AND
+        <foreach collection="recipesIncludingAllergy" item="recipe" separator="AND">
+            recipe_id NOT IN (#{recipe.recipe_id})
+        </foreach>
+    </select>
+
+    <select id="getRecommendationRecipes" parameterType="String" resultType="recipe">
+        SELECT *
+        FROM recipe
+        WHERE
+        recipe_id IN (SELECT recommendation_recipeId
+                        FROM recommendation
+                        WHERE recommendation_childId = #{child_id})
+    </select>
+    <insert id="insertFoodIngredient" parameterType="foodIngredient">
+        INSERT INTO
+        foodingredient(foodIngredient_id, foodIngredient_name, foodIngredient_img)
+        VALUES (
+                   CONCAT('foodingredient-',
+                           (
+                               SELECT if(
+                                   MAX(foodIngredient_num) is null ,
+                                   1,
+                                   max(temp.foodIngredient_num) + 1
+                                   )
+                               FROM (
+                                    SELECT foodIngredient_num
+                                    FROM foodIngredient
+                                   ) as temp
+                            )
+                        ),
+                #{foodIngredient_name},
+                #{foodIngredient_img}
+               )
+    </insert>
+</mapper>

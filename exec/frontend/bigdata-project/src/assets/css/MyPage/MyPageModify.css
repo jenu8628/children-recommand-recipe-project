@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "BMDOHYEON";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff")
+  format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.MypageModify-container {
+  overflow: hidden;
+  font-family: "BMDOHYEON", sans-serif;
+  width: 100vw;
+  /* border :2px solid black; */
+}
+
+.MypageModify-container .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.MypageModify-container .container #profileform {
+  /* display: block; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%;
+  width: 70%;
+}
+.MypageModify-container .container #profileform input {
+  height: 80%;
+  margin: 0.5rem;
+  padding: 0.2rem;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 3;
+
+  outline: none;
+}
+
+.MypageModify-container .container #profileform #button {
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+}
+.MypageModify-container .container #profileform #button #btn {
+  display: flex;
+  font-family: "Gilroy ExtraBold", system-ui, sans-serif;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 4em;
+  height: 2em;
+  font-size: 1em;
+  text-transform: uppercase;
+  background: #f4157e;
+  color: #f8faff;
+  appearance: none;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 10px 60px -10px #cd106e;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  transform-style: preserve-3d;
+  transform: perspective(250px) scale3d(1, 1, 1);
+  transition: all 1s cubic-bezier(0.03, 0.98, 0.52, 0.99);
+  /* will-change: transform, box-shadow, background; */
+  outline: none;
+}
+.MypageModify-container .container #profileform #button #btn:hover {
+  background: lighten(#f4157e, 2%);
+  box-shadow: 0 8px 65px -5px #cd106e;
+}
+
+.MypageModify-container .container #profileform #button #btn:active {
+  background: #cd106e;
+  box-shadow: 0 10px 60px -10px #cd106e;
+  transform: perspective(250px) scale3d(1, 1, 1) translateY(5%) !important;
+}
+/* .MypageModify #profileform #form {
+ height: 10vw;
+ width: 80%;
+ display: flex;
+ justify-content: space-between;
+} */
