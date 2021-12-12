@@ -22,8 +22,7 @@
             class="ChatList-list-group-item"
             v-for="(room, idx) in messageRooms"
             :key="room.messageRoom_id"
-            @click="enterRoom"
-            :id="idx"
+            @click="enterRoom(idx)"
           >
             <div class="ChatList-profile">
               <div
@@ -33,7 +32,7 @@
                 "
               ></div>
             </div>
-            <div class="ChatList-name" :id="idx">
+            <div class="ChatList-name">
               {{ children[idx].child_name }} 채팅방
             </div>
             <div class="ChatList-unread">
@@ -60,8 +59,8 @@ export default {
     };
   },
   created() {
-    this.findMessageRoom();
     this.findMyChildren();
+    this.findMessageRoom();
   },
   methods: {
     findMessageRoom() {
@@ -74,7 +73,7 @@ export default {
         .then(
           (res) => {
             this.messageRooms = res.data;
-
+            console.log(res.data)
             for (let i = 0; i < this.messageRooms.length; i++) {
               this.getUnread(this.messageRooms[i].messageRoom_hashId);
             }
@@ -84,8 +83,9 @@ export default {
           }
         );
     },
-    enterRoom(e) {
-      var idx = e.target.id;
+    enterRoom(idx) {
+      console.log(idx)
+      // var idx = e.target.id;
       var child_id = this.children[idx].child_id;
       localStorage.setItem("child_id", child_id);
 
@@ -103,7 +103,6 @@ export default {
         .then(
           (res) => {
             this.children = res.data;
-
             for (let i = 0; i < this.children.length; i++) {
               this.children[i].child_profile =
                 "data:image/jpeg;base64," + this.children[i].child_profile;

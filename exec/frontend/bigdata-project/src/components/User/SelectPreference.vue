@@ -14,9 +14,7 @@
             class="image-wrap"
             :style="{
               backgroundImage:
-                'url(data:image/jpeg;base64,' +
-                ingredient.foodIngredient_img +
-                ')',
+                'url(' + ingredient.foodIngredient_img + ')',
             }"
           >
             <div
@@ -88,6 +86,7 @@ export default {
     );
     http.get("/recipe/getAllFoodIngredient").then(
       (response) => {
+        console.log(response.data)
         var data = response.data;
         this.ingredientList = data;
         this.createPreferRatingList();
@@ -106,9 +105,11 @@ export default {
       // preferRatingList init
       // 모든 식재료 id에 rating 0 넣어서 초기화 [{foodIngredient_id:rating(0)}]
       for (var i = 0; i < this.ingredientList.length; i++) {
+        this.ingredientList[i].foodIngredient_img =  require(`@/assets/img/food/img_${i+1}.jpg`)
         this.preferRatingList.push({
           foodIngredient_id: this.ingredientList[i].foodIngredient_id,
-          rating: 0,
+
+          rating: 1,
         });
       }
     },
@@ -157,8 +158,8 @@ export default {
       );
       await axios
         .post(
-          `http://j4b205.p.ssafy.io:8001/recommendation/playRecommendationAlgo`
-          // `http://127.0.0.1:8001/recommendation/playRecommendationAlgo`
+          // `http://j4b205.p.ssafy.io:8001/recommendation/playRecommendationAlgo`
+          `http://127.0.0.1:8000/recommendation/playRecommendationAlgo`
         )
         .then(() => {
           this.modalShow = false;

@@ -142,20 +142,17 @@ export default {
     getAllRecipe() {
       var childId = localStorage.getItem("child_id");
       http
-        .get("/recipe/getRecommnendationRecipes", {
-          params: { child_id: childId },
+        .get("/recipe/getRecommendationRecipe", {
+          params: { recommendationRecipe_childId: childId },
         })
-        .then((res) => {
-          this.recipes = res.data;
-          if (res.data.length == 0) {
-            http
-              .get("/recipe/getRecommendationRecipe", {
-                params: { recommendationRecipe_childId: childId },
-              })
-              .then((res) => {
-                this.recipes = res.data;
-              });
-          }
+        .then((response) => {
+          this.recipes = response.data
+          http
+            .get("/recipe/getRecipe/recipe-279")
+            .then((res)=>{
+              this.recipes.unshift(res.data)
+            })
+          console.log(this.recipes)
         });
     },
     getRecipeDetail(pic) {

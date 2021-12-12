@@ -142,10 +142,10 @@ export default {
   },
   methods: {
     connect() {
-      this.socket = new SockJS(
-        "http://j4b205.p.ssafy.io:7080/formychild/ws-stomp"
-      );
-      // this.socket = new SockJS("http://localhost:7080/formychild/ws-stomp");
+      // this.socket = new SockJS(
+      //   "http://j4b205.p.ssafy.io:7080/formychild/ws-stomp"
+      // );
+      this.socket = new SockJS("http://localhost:7080/formychild/ws-stomp");
       this.stompClient = Stomp.over(this.socket);
 
       this.stompClient.debug = () => {};

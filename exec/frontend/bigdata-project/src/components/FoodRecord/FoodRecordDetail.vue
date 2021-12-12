@@ -376,8 +376,8 @@ export default {
     getSchoolInfo() {
       axios
         .get(
-          `http://j4b205.p.ssafy.io:8001/myapp/schoolfeeding/${this.date}/${this.schoolName}/${this.childArea}/`
-          // `http://127.0.0.1:8001/myapp/schoolfeeding/${this.date}/${this.schoolName}/${this.childArea}/`
+          // `http://j4b205.p.ssafy.io:8001/myapp/schoolfeeding/${this.date}/${this.schoolName}/${this.childArea}/`
+          `http://127.0.0.1:8000/myapp/schoolfeeding/${this.date}/${this.schoolName}/${this.childArea}/`
         )
         .then((res) => {
           this.schoolFeeding = res.data[0];
@@ -392,8 +392,8 @@ export default {
             // 급식이 존재할 때만 식단표불러오기
             axios
               .get(
-                `http://j4b205.p.ssafy.io:8001/myapp/schoolfeedingdetail/${this.date}/${this.childArea}/${this.schoolName}/${this.currentSchoolFeedingId}/`
-                // `http://127.0.0.1:8001/myapp/schoolfeedingdetail/${this.date}/${this.childArea}/${this.schoolName}/${this.currentSchoolFeedingId}/`
+                // `http://j4b205.p.ssafy.io:8001/myapp/schoolfeedingdetail/${this.date}/${this.childArea}/${this.schoolName}/${this.currentSchoolFeedingId}/`
+                `http://127.0.0.1:8000/myapp/schoolfeedingdetail/${this.date}/${this.childArea}/${this.schoolName}/${this.currentSchoolFeedingId}/`
               )
               .then((res) => {
                 this.schoolOpen = true;

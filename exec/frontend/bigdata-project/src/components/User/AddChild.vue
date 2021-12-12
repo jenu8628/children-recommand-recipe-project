@@ -303,16 +303,16 @@ export default {
         (res) => {
           axios
             .get(
-              `http://j4b205.p.ssafy.io:8001/myapp/schoolfeeding/${this.date}/${this.child.child_schoolName}/${this.child.child_area}/`
-              // `http://127.0.0.1:8001/myapp/schoolfeeding/${this.date}/${this.child.child_schoolName}/${this.child.child_area}/`
+              // `http://j4b205.p.ssafy.io:8001/myapp/schoolfeeding/${this.date}/${this.child.child_schoolName}/${this.child.child_area}/`
+              `http://127.0.0.1:8000/myapp/schoolfeeding/${this.date}/${this.child.child_schoolName}/${this.child.child_area}/`
             )
             .then((res) => {
               var schoolFeeding = res.data;
               if (schoolFeeding.length !== 0) {
                 var currentSchoolFeedingId = res.data[0].schoolfeeding_id;
                 axios.get(
-                  `http://j4b205.p.ssafy.io:8001/myapp/schoolfeedingdetail/${this.date}/${this.child.child_area}/${this.child.child_schoolName}/${currentSchoolFeedingId}/`
-                  // `http://127.0.0.1:8001/myapp/schoolfeedingdetail/${this.date}/${this.child.child_area}/${this.child.child_schoolName}/${currentSchoolFeedingId}/`
+                  // `http://j4b205.p.ssafy.io:8001/myapp/schoolfeedingdetail/${this.date}/${this.child.child_area}/${this.child.child_schoolName}/${currentSchoolFeedingId}/`
+                  `http://127.0.0.1:8000/myapp/schoolfeedingdetail/${this.date}/${this.child.child_area}/${this.child.child_schoolName}/${currentSchoolFeedingId}/`
                 );
               }
             });
